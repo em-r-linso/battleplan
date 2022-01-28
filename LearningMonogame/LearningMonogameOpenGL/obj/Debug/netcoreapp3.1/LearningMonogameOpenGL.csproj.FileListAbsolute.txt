@@ -22,4 +22,6 @@ D:\GitHub\learning-monogame\LearningMonogame\LearningMonogameOpenGL\obj\Debug\ne
 D:\GitHub\learning-monogame\LearningMonogame\LearningMonogameOpenGL\obj\Debug\netcoreapp3.1\LearningMonogameOpenGL.dll
 D:\GitHub\learning-monogame\LearningMonogame\LearningMonogameOpenGL\obj\Debug\netcoreapp3.1\LearningMonogameOpenGL.pdb
 D:\GitHub\learning-monogame\LearningMonogame\LearningMonogameOpenGL\obj\Debug\netcoreapp3.1\LearningMonogameOpenGL.genruntimeconfig.cache
+D:\GitHub\learning-monogame\LearningMonogame\LearningMonogameOpenGL\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 D:\GitHub\learning-monogame\LearningMonogame\LearningMonogameOpenGL\bin\Debug\netcoreapp3.1\Content\ball.xnb
+D:\GitHub\learning-monogame\LearningMonogame\LearningMonogameOpenGL\bin\Debug\netcoreapp3.1\GameData\Config.json

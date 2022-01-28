@@ -2,8 +2,8 @@
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>D:/GitHub/learning-monogame/LearningMonogame/LearningMonogameOpenGL/Content/ball.png</SourceFile>
   <SourceTime>2022-01-27T18:04:54.758613-07:00</SourceTime>
-  <DestFile>D:/GitHub/learning-monogame/LearningMonogame/LearningMonogameOpenGL/Content/bin/DesktopGL/Content/ball.xnb</DestFile>
-  <DestTime>2022-01-27T19:16:41.2292118-07:00</DestTime>
+  <DestFile>D:/GitHub/learning-monogame/LearningMonogame/LearningMonogameOpenGL/Content/bin/DesktopGL/ball.xnb</DestFile>
+  <DestTime>2022-01-27T18:53:26.579152-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T10:17:54-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
