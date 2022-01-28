@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LearningMonogameOpenGL
@@ -11,18 +13,23 @@ namespace LearningMonogameOpenGL
 			Graphics              = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			IsMouseVisible        = true;
-
 		}
 
 		GraphicsDeviceManager Graphics     { get; }
 		SpriteBatch           Batch        { get; set; }
 		Cursor                Cursor       { get; set; }
 		Texture2D             DebugTexture { get; set; }
+		List<GameObject>      GameObjects  { get; set; }
 
-		// ReSharper disable once RedundantOverriddenMember
 		protected override void Initialize()
 		{
-			Cursor = new Cursor(Content, 0, 0);
+			// initialize GameObjects list with necessary GameObjects
+			GameObjects = new List<GameObject>
+			{
+				new Cursor(Content, 0, 0),
+				new GameObject(Content,"tDebug", Graphics.PreferredBackBufferWidth / 2f, Graphics.PreferredBackBufferHeight /2f, 0)
+			};
+
 			base.Initialize();
 		}
 
@@ -30,14 +37,16 @@ namespace LearningMonogameOpenGL
 		{
 			Batch = new SpriteBatch(GraphicsDevice);
 
-			DebugTexture  = Content.Load<Texture2D>("tDebug");
+			DebugTexture = Content.Load<Texture2D>("tDebug");
 		}
 
 		protected override void Update(GameTime gameTime)
 		{
-			var time = (float) gameTime.ElapsedGameTime.TotalSeconds;
-
-			Cursor.Update(time);
+			// update every GameObject
+			foreach (var gameObject in GameObjects)
+			{
+				gameObject.Update((float) gameTime.ElapsedGameTime.TotalSeconds);
+			}
 
 			base.Update(gameTime);
 		}
@@ -47,28 +56,24 @@ namespace LearningMonogameOpenGL
 			Graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
 
 			Batch.Begin();
-			Batch.Draw(
-				Cursor.Texture,
-				Cursor.CursorPosition,
-				null,
-				Color.White,
-				0f,
-				new Vector2(Cursor.Texture.Width / 2f, Cursor.Texture.Height / 2f),
-				Vector2.One,
-				SpriteEffects.None,
-				0f
-			);
-			Batch.Draw(
-				DebugTexture,
-				new Vector2(Graphics.PreferredBackBufferWidth / 2f, Graphics.PreferredBackBufferHeight / 2f),
-				null,
-				Color.White,
-				0f,
-				new Vector2(DebugTexture.Width / 2f, DebugTexture.Height / 2f),
-				Vector2.One,
-				SpriteEffects.None,
-				0f
-			);
+
+			// draw every GameObject (layered by Y)
+			var gameObjectsByY = GameObjects.OrderBy(o => o.Position.Y).ToList();
+			foreach (var gameObject in gameObjectsByY)
+			{
+				Batch.Draw(
+					gameObject.Texture,
+					gameObject.Position,
+					null,
+					Color.White,
+					0f,
+					new Vector2(gameObject.Texture.Width / 2f, gameObject.Texture.Height / 2f),
+					Vector2.One,
+					SpriteEffects.None,
+					0f
+				);
+			}
+
 			Batch.End();
 
 			base.Draw(gameTime);
