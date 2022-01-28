@@ -1,2 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/GitHub/learning-monogame/LearningMonogame/LearningMonogameOpenGL/Content/ball.png","D:/GitHub/learning-monogame/LearningMonogame/LearningMonogameOpenGL/Content/bin/ball.xnb","TextureProcessor","Texture2DContent",8368,16469,0.1273107
+"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/ball.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/ball.xnb","TextureProcessor","Texture2DContent",8368,16469,0.1564578
+"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebug.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tDebug.xnb","TextureProcessor","Texture2DContent",49305,40085,0.0029491

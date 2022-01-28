@@ -216,11 +216,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\learning-monogame\\LearningMonogame\\LearningMonogameOpenGL\\LearningMonogameOpenGL.csproj",
+      "projectUniqueName": "D:\\GitHub\\LearningMonogame\\LearningMonogameOpenGL\\LearningMonogameOpenGL.csproj",
       "projectName": "LearningMonogameOpenGL",
-      "projectPath": "D:\\GitHub\\learning-monogame\\LearningMonogame\\LearningMonogameOpenGL\\LearningMonogameOpenGL.csproj",
+      "projectPath": "D:\\GitHub\\LearningMonogame\\LearningMonogameOpenGL\\LearningMonogameOpenGL.csproj",
       "packagesPath": "C:\\Users\\boiss\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\learning-monogame\\LearningMonogame\\LearningMonogameOpenGL\\obj\\",
+      "outputPath": "D:\\GitHub\\LearningMonogame\\LearningMonogameOpenGL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\boiss\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -6,7 +6,6 @@ namespace LearningMonogameOpenGL
 	/// <summary>Static class that stores all JSON data used in the game.</summary>
 	internal static class GameData
 	{
-
 		static GameData()
 		{
 			Config = JsonConvert.DeserializeObject<ConfigStruct>(File.ReadAllText(@"GameData\Config.json"));
