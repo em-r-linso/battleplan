@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace LearningMonogameOpenGL
 {
@@ -10,43 +12,48 @@ namespace LearningMonogameOpenGL
 	{
 		public Game1()
 		{
+			ContentManager        = Content;
 			Graphics              = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			IsMouseVisible        = true;
 		}
 
-		GraphicsDeviceManager Graphics     { get; }
-		SpriteBatch           Batch        { get; set; }
-		Cursor                Cursor       { get; set; }
-		Texture2D             DebugTexture { get; set; }
-		List<GameObject>      GameObjects  { get; set; }
+		public static ContentManager ContentManager { get; set; }
+
+		GraphicsDeviceManager Graphics    { get; }
+		SpriteBatch           Batch       { get; set; }
+		List<GameObject>      GameObjects { get; set; }
+		GameObject            Cursor      { get; set; }
 
 		protected override void Initialize()
 		{
+			var screenCenter = new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) / 2f;
+
 			// initialize GameObjects list with necessary GameObjects
-			GameObjects = new List<GameObject>
-			{
-				new Cursor(Content, 0, 0),
-				new GameObject(Content,"tDebug", Graphics.PreferredBackBufferWidth / 2f, Graphics.PreferredBackBufferHeight /2f, 0)
-			};
+			Cursor = new GameObject(new Sprite("ball"), screenCenter, GameData.Config.CursorSpeed);
+			var debugSquare = new GameObject(new Sprite(), screenCenter, 0);
+			var debugActor  = new Actor(new Sprite("tDebugCharacter", Sprite.OriginType.Bottom), screenCenter, 100);
+			GameObjects = new List<GameObject> {Cursor, debugSquare, debugActor};
 
 			base.Initialize();
 		}
 
-		protected override void LoadContent()
-		{
-			Batch = new SpriteBatch(GraphicsDevice);
-
-			DebugTexture = Content.Load<Texture2D>("tDebug");
-		}
+		protected override void LoadContent() { Batch = new SpriteBatch(GraphicsDevice); }
 
 		protected override void Update(GameTime gameTime)
 		{
-			// update every GameObject
-			foreach (var gameObject in GameObjects)
+			// set cursor target to click location
+			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
 			{
-				gameObject.Update((float) gameTime.ElapsedGameTime.TotalSeconds);
+				Cursor.Target   = Mouse.GetState().Position.ToVector2();
+				Cursor.IsMoving = true;
 			}
+
+			// move every GameObject
+			foreach (var gameObject in GameObjects)
+				gameObject.Move((float) gameTime.ElapsedGameTime.TotalSeconds);
+			foreach (var gameObject in GameObjects.OfType<Actor>())
+				gameObject.Act((float) gameTime.ElapsedGameTime.TotalSeconds);
 
 			base.Update(gameTime);
 		}
@@ -58,16 +65,15 @@ namespace LearningMonogameOpenGL
 			Batch.Begin();
 
 			// draw every GameObject (layered by Y)
-			var gameObjectsByY = GameObjects.OrderBy(o => o.Position.Y).ToList();
-			foreach (var gameObject in gameObjectsByY)
+			foreach (var gameObject in GameObjects.OrderBy(o => o.Position.Y).ToList())
 			{
 				Batch.Draw(
-					gameObject.Texture,
+					gameObject.Sprite.Texture,
 					gameObject.Position,
 					null,
 					Color.White,
 					0f,
-					new Vector2(gameObject.Texture.Width / 2f, gameObject.Texture.Height / 2f),
+					gameObject.Sprite.OriginVector,
 					Vector2.One,
 					SpriteEffects.None,
 					0f

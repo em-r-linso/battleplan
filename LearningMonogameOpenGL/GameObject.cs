@@ -1,31 +1,17 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
 
 namespace LearningMonogameOpenGL
 {
 	/// <summary>An object physically in the world with a location and texture.</summary>
 	public class GameObject
 	{
-		public GameObject(ContentManager content, string textureAssetName, float x, float y, float moveSpeed)
+		public GameObject(Sprite sprite, Vector2 position, float moveSpeed)
 		{
 			MoveSpeed = moveSpeed;
-
-			// set texture
-			try
-			{
-				Texture = content.Load<Texture2D>(textureAssetName);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-				throw;
-			}
+			Sprite    = sprite;
 
 			// initialize position and target to same point
-			Position = Target = new Vector2(x, y);
+			Position = Target = position;
 		}
 
 		/// <summary>Current screen position of the object.</summary>
@@ -38,27 +24,19 @@ namespace LearningMonogameOpenGL
 		public float MoveSpeed { get; set; }
 
 		/// <summary>Texture drawn at the object's position.</summary>
-		public Texture2D Texture { get; set; }
+		public Sprite Sprite { get; set; }
 
 		public bool IsMoving { get; set; }
 
-		public void Update(float time)
+		public void Move(float time)
 		{
-			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+			if (!IsMoving)
 			{
-				OnClick();
+				return;
 			}
 
-			if (IsMoving)
-			{
-				StepTowardTarget(time);
-			}
-		}
-
-		void StepTowardTarget(float time)
-		{
 			// snap to target if close enough
-			if (Vector2.Distance(Position, Target) <= (GameData.Config.CursorSpeed * time))
+			if (Vector2.Distance(Position, Target) <= (MoveSpeed * time))
 			{
 				Position = Target;
 				IsMoving = false;
@@ -69,11 +47,8 @@ namespace LearningMonogameOpenGL
 			{
 				var difference = Target - Position;
 				difference.Normalize();
-				Position += difference * GameData.Config.CursorSpeed * time;
+				Position += difference * MoveSpeed * time;
 			}
-		}
-
-		public virtual void OnClick() {
 		}
 	}
 }
