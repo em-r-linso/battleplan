@@ -7,9 +7,11 @@
     <File>D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/ball.png</File>
     <File>D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tCharacterRing.png</File>
     <File>D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebug.png</File>
+    <File>D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebugBG.png</File>
     <File>D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebugCharacter.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

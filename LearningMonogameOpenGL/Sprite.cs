@@ -7,15 +7,15 @@ namespace LearningMonogameOpenGL
 	{
 		public enum OriginType
 		{
-			Topleft,
+			TopLeft,
 			Top,
-			Topright,
+			TopRight,
 			Left,
 			Center,
 			Right,
-			Bottomleft,
+			BottomLeft,
 			Bottom,
-			Bottomright
+			BottomRight
 		}
 
 		public Sprite(string textureName = "tDebug", OriginType origin = OriginType.Center)
@@ -34,15 +34,15 @@ namespace LearningMonogameOpenGL
 			{
 				var (x, y) = Origin switch
 				{
-					OriginType.Topleft     => (0.0f, 0.0f),
+					OriginType.TopLeft     => (0.0f, 0.0f),
 					OriginType.Top         => (0.5f, 0.0f),
-					OriginType.Topright    => (1.0f, 0.0f),
+					OriginType.TopRight    => (1.0f, 0.0f),
 					OriginType.Left        => (0.0f, 0.5f),
 					OriginType.Center      => (0.5f, 0.5f),
 					OriginType.Right       => (1.0f, 0.5f),
-					OriginType.Bottomleft  => (0.0f, 1.0f),
+					OriginType.BottomLeft  => (0.0f, 1.0f),
 					OriginType.Bottom      => (0.5f, 1.0f),
-					OriginType.Bottomright => (1.0f, 1.0f),
+					OriginType.BottomRight => (1.0f, 1.0f),
 					_                      => (0.0f, 0.0f)
 				};
 				return new Vector2(Texture.Width * x, Texture.Height * y);

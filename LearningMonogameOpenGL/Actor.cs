@@ -7,9 +7,9 @@ namespace LearningMonogameOpenGL
 	{
 		readonly Random _r = new Random();
 
-		public Actor(Sprite sprite, Vector2 position, float moveSpeed) : base(sprite, position, moveSpeed)
+		public Actor(Sprite sprite, Vector2 position, float moveSpeed, float actInterval) : base(sprite, position, moveSpeed)
 		{
-			ActInterval = 5;
+			ActInterval = actInterval;
 		}
 
 		float ActClock    { get; set; }

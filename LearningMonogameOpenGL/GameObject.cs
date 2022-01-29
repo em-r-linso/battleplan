@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace LearningMonogameOpenGL
 {
@@ -47,7 +48,10 @@ namespace LearningMonogameOpenGL
 			{
 				var difference = Target - Position;
 				difference.Normalize();
-				Position += difference * MoveSpeed * time;
+
+				var perspectiveAdjustedMoveSpeed = MoveSpeed * (1f - (0.5f * Math.Abs(difference.Y)));
+
+				Position   += difference * perspectiveAdjustedMoveSpeed * time;
 			}
 		}
 	}

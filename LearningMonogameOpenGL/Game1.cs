@@ -30,10 +30,10 @@ namespace LearningMonogameOpenGL
 			var screenCenter = new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) / 2f;
 
 			// initialize GameObjects list with necessary GameObjects
-			Cursor = new GameObject(new Sprite("ball"), screenCenter, GameData.Config.CursorSpeed);
-			var debugSquare = new GameObject(new Sprite(), screenCenter, 0);
-			var debugActor  = new Actor(new Sprite("tDebugCharacter", Sprite.OriginType.Bottom), screenCenter, 100);
-			GameObjects = new List<GameObject> {Cursor, debugSquare, debugActor};
+			Cursor = new GameObject(new Sprite("tCharacterRing"), screenCenter, GameData.Config.CursorSpeed);
+			var background = new GameObject(new Sprite("tDebugBG",   Sprite.OriginType.TopLeft), Vector2.Zero, 0);
+			var debugActor = new Actor(new Sprite("tDebugCharacter", Sprite.OriginType.Bottom), screenCenter, 100, 3);
+			GameObjects = new List<GameObject> {Cursor, background, debugActor};
 
 			base.Initialize();
 		}
