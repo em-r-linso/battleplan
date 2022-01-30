@@ -31,8 +31,15 @@ namespace LearningMonogameOpenGL
 
 			// initialize GameObjects list with necessary GameObjects
 			Cursor = new GameObject(new Sprite("tCharacterRing"), screenCenter, GameData.Config.CursorSpeed);
-			var background = new GameObject(new Sprite("tDebugBG",   Sprite.OriginType.TopLeft), Vector2.Zero, 0);
-			var debugActor = new Actor(new Sprite("tDebugCharacter", Sprite.OriginType.Bottom), screenCenter, 100, 3);
+			var background = new GameObject(new Sprite("tDebugBG", Sprite.OriginType.TopLeft), Vector2.Zero, 0);
+			var debugActor = new Actor(
+				new Sprite("tDebugCharacter", Sprite.OriginType.Bottom),
+				screenCenter,
+				100,
+				0.5f,
+				new Behavior(Behavior.DoType.Approach, Behavior.ToType.MyTarget),
+				"Test Guy"
+			) {Target = Cursor};
 			GameObjects = new List<GameObject> {Cursor, background, debugActor};
 
 			base.Initialize();
@@ -45,15 +52,15 @@ namespace LearningMonogameOpenGL
 			// set cursor target to click location
 			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
 			{
-				Cursor.Target   = Mouse.GetState().Position.ToVector2();
-				Cursor.IsMoving = true;
+				Cursor.Destination = Mouse.GetState().Position.ToVector2();
+				Cursor.IsMoving    = true;
 			}
 
 			// move every GameObject
 			foreach (var gameObject in GameObjects)
-				gameObject.Move((float) gameTime.ElapsedGameTime.TotalSeconds);
+				gameObject.Move((float)gameTime.ElapsedGameTime.TotalSeconds);
 			foreach (var gameObject in GameObjects.OfType<Actor>())
-				gameObject.Act((float) gameTime.ElapsedGameTime.TotalSeconds);
+				gameObject.Idle((float)gameTime.ElapsedGameTime.TotalSeconds);
 
 			base.Update(gameTime);
 		}

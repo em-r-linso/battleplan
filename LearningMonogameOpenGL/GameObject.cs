@@ -12,14 +12,14 @@ namespace LearningMonogameOpenGL
 			Sprite    = sprite;
 
 			// initialize position and target to same point
-			Position = Target = position;
+			Position = Destination = position;
 		}
 
 		/// <summary>Current screen position of the object.</summary>
 		public Vector2 Position { get; set; }
 
 		/// <summary>Point that the object moves toward every frame.</summary>
-		public Vector2 Target { get; set; }
+		public Vector2 Destination { get; set; }
 
 		/// <summary>Speed in pixels/second the object uses to move toward its target.</summary>
 		public float MoveSpeed { get; set; }
@@ -37,16 +37,16 @@ namespace LearningMonogameOpenGL
 			}
 
 			// snap to target if close enough
-			if (Vector2.Distance(Position, Target) <= (MoveSpeed * time))
+			if (Vector2.Distance(Position, Destination) <= (MoveSpeed * time))
 			{
-				Position = Target;
+				Position = Destination;
 				IsMoving = false;
 			}
 
 			// step toward target if not close enough to snap
 			else
 			{
-				var difference = Target - Position;
+				var difference = Destination - Position;
 				difference.Normalize();
 
 				var perspectiveAdjustedMoveSpeed = MoveSpeed * (1f - (0.5f * Math.Abs(difference.Y)));
