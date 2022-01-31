@@ -8,23 +8,23 @@ namespace LearningMonogameOpenGL
 	{
 		readonly Random _r = new Random();
 
-		public Actor(Sprite   sprite,
-		             Vector2  position,
-		             float    moveSpeed,
-		             float    idleInterval,
-		             Behavior idleBehavior,
-		             string   name) : base(sprite, position, moveSpeed)
+		public Actor(Sprite     sprite,
+		             Vector2    position,
+		             float      moveSpeed,
+		             float      idleInterval,
+		             Behavior[] idleBehaviors,
+		             string     name) : base(sprite, position, moveSpeed)
 		{
-			IdleInterval = idleInterval;
-			IdleBehavior = idleBehavior;
-			Name         = name;
+			IdleInterval  = idleInterval;
+			IdleBehaviors = idleBehaviors;
+			Name          = name;
 		}
 
-		float             IdleClock    { get; set; }
-		float             IdleInterval { get; }
-		Behavior          IdleBehavior { get; }
-		string            Name         { get; }
-		public GameObject Target       { get; set; }
+		float             IdleClock     { get; set; }
+		float             IdleInterval  { get; }
+		Behavior[]        IdleBehaviors { get; }
+		string            Name          { get; }
+		public GameObject Target        { get; set; }
 
 		public void Idle(float time)
 		{
@@ -32,7 +32,8 @@ namespace LearningMonogameOpenGL
 			if (IdleClock >= IdleInterval)
 			{
 				IdleClock -= IdleInterval;
-				DoBehavior(IdleBehavior);
+				foreach (var behavior in IdleBehaviors)
+					DoBehavior(behavior);
 			}
 		}
 

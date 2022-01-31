@@ -16,9 +16,8 @@ namespace LearningMonogameOpenGL
 
 		internal struct ConfigStruct
 		{
-			// ReSharper disable once UnassignedGetOnlyAutoProperty
-			/// <summary>Number of pixels the cursor moves per second.</summary>
-			public float CursorSpeed { get; set; }
+			public float CursorSpeed      { get; set; }
+			public float FormationSpacing { get; set; }
 		}
 	}
 }

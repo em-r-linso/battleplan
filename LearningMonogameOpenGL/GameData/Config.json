@@ -1,3 +1,4 @@
 ﻿{
-  "CursorSpeed": 300
+  "CursorSpeed": 1000,
+  "FormationSpacing": 70
 }
