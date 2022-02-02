@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,9 +7,9 @@ using Microsoft.Xna.Framework.Input;
 namespace Battleplan
 {
 	/// <inheritdoc cref="Game" />
-	public class Game1 : Game
+	public class GameManager : Game
 	{
-		public Game1()
+		public GameManager()
 		{
 			ContentManager        = Content;
 			Graphics              = new GraphicsDeviceManager(this);
@@ -19,13 +18,13 @@ namespace Battleplan
 		}
 
 		public static ContentManager ContentManager { get; set; }
-
-		GraphicsDeviceManager Graphics  { get; }
-		SpriteBatch           Batch     { get; set; }
-		GameObject            Cursor    { get; set; }
-		bool                  MouseDown { get; set; }
-		Formation             Party     { get; set; }
-		Line                  PartyLine { get; set; }
+		GraphicsDeviceManager        Graphics       { get; }
+		SpriteBatch                  Batch          { get; set; }
+		GameObject                   Cursor         { get; set; }
+		bool                         MouseDown      { get; set; }
+		Formation                    Party          { get; set; }
+		Line                         PartyLine      { get; set; }
+		Vector2                      CameraPosition { get; set; }
 
 		void UpdateScreenSize()
 		{
@@ -44,9 +43,6 @@ namespace Battleplan
 
 			// create Cursor
 			Cursor = new GameObject(new Sprite("tCharacterRing"), screenCenter, GameData.Config.CursorSpeed);
-
-			// create background
-			// new GameObject(new Sprite("tDebugBG", Sprite.OriginType.TopLeft), Vector2.Zero, 0);
 
 			// create debug characters
 			var A1 = new Actor(
@@ -79,7 +75,7 @@ namespace Battleplan
 			Party.AddUnit(A2, 0, 2);
 			Party.AddUnit(A3, 2, 2);
 
-			PartyLine = new Line(new Sprite("tLineSegment"), screenCenter, screenCenter + (Vector2.One * 500));
+			PartyLine = new Line(new Sprite("tLineSegment"), Vector2.Zero, Vector2.Zero);
 
 			base.Initialize();
 		}
@@ -88,18 +84,22 @@ namespace Battleplan
 
 		protected override void Update(GameTime gameTime)
 		{
+			// update camera position
+			CameraPosition =  (Party.FrontCenterUnitPosition + Cursor.Position) / 2;
+			CameraPosition =  CameraPosition.WorldToScreen();
+			CameraPosition -= new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) / 2f;
+
 			// set cursor destination to click location & move formation
 			if ((Mouse.GetState().LeftButton == ButtonState.Pressed) && !MouseDown)
 			{
 				MouseDown = true;
-				var clickPosition = Mouse.GetState().Position.ToVector2();
-				clickPosition *= new Vector2(1, 2);
+				var clickPosition = Mouse.GetState().Position.ToVector2() + CameraPosition;
+				clickPosition = clickPosition.ScreenToWorld();
 
 				// move Party
 				Party.MoveFormation(clickPosition);
 
 				// move Cursor
-				Cursor.Position    = Party.FrontCenterMarkerPosition;
 				Cursor.Destination = clickPosition;
 				Cursor.IsMoving    = true;
 
@@ -131,7 +131,7 @@ namespace Battleplan
 				{
 					Batch.Draw(
 						line.Sprite.Texture,
-						segment.WorldToScreen(),
+						segment.WorldToScreen() - CameraPosition,
 						null,
 						Color.White,
 						0f,
@@ -142,11 +142,13 @@ namespace Battleplan
 					);
 				}
 			}
+
+			// draw every object
 			foreach (var gameObject in GameObject.Registry.OrderBy(o => o.Position.Y).ToList())
 			{
 				Batch.Draw(
 					gameObject.Sprite.Texture,
-					gameObject.Position.WorldToScreen(), // adjust for 45deg view
+					gameObject.Position.WorldToScreen() - CameraPosition,
 					null,
 					Color.White,
 					0f,

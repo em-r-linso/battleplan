@@ -4,7 +4,6 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/GitHub/Battleplan/BattleplanOpenGL/Content/ball.png</File>
     <File>D:/GitHub/Battleplan/BattleplanOpenGL/Content/tCharacterRing.png</File>
     <File>D:/GitHub/Battleplan/BattleplanOpenGL/Content/tDebug.png</File>
     <File>D:/GitHub/Battleplan/BattleplanOpenGL/Content/tDebugBG.png</File>
@@ -12,7 +11,6 @@
     <File>D:/GitHub/Battleplan/BattleplanOpenGL/Content/tLineSegment.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

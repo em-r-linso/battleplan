@@ -20,7 +20,7 @@ namespace Battleplan
 
 		public Sprite(string textureName = "tDebug", OriginType origin = OriginType.Center)
 		{
-			Texture = Game1.ContentManager.Load<Texture2D>(textureName);
+			Texture = GameManager.ContentManager.Load<Texture2D>(textureName);
 			Origin  = origin;
 		}
 

@@ -20,12 +20,17 @@ namespace Battleplan
 			}
 		}
 
-		int                  Width                     { get; }
-		int                  Depth                     { get; }
-		public GameObject[,] FormationMarkers          { get; set; }
-		Actor[,]             Units                     { get; }
-		public Vector2       FrontCenterUnitPosition   { get; set; }
-		public Vector2       FrontCenterMarkerPosition { get; set; }
+		int           Width            { get; }
+		int           Depth            { get; }
+		GameObject[,] FormationMarkers { get; }
+		Actor[,]      Units            { get; }
+
+		// BUG: this will crash if there's no unit in the front center
+		// 	formations with no front unit should probably automatically adjust:
+		// 	1. trim edges
+		// 	2. if there's still no frontcenter, add edges to either side to center a unit
+		public Vector2 FrontCenterUnitPosition   => Units[Width            / 2, 0].Position;
+		public Vector2 FrontCenterMarkerPosition => FormationMarkers[Width / 2, 0].Position;
 
 		public void AddUnit(Actor newUnit, int file, int rank)
 		{
@@ -35,13 +40,6 @@ namespace Battleplan
 
 		public void MoveFormation(Vector2 destination)
 		{
-			// BUG: this will crash if there's no unit in the front center
-			// 	formations with no front unit should probably automatically adjust:
-			// 	1. trim edges
-			// 	2. if there's still no frontcenter, add edges to either side to center a unit
-			FrontCenterUnitPosition   = Units[Width            / 2, 0].Position;
-			FrontCenterMarkerPosition = FormationMarkers[Width / 2, 0].Position;
-
 			// find the angle to rotate the formation
 			var angle = FrontCenterUnitPosition.RotationTo(destination);
 

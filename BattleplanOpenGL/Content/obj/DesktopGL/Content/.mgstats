@@ -1,5 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/GitHub/Battleplan/BattleplanOpenGL/Content/ball.png","D:/GitHub/Battleplan/BattleplanOpenGL/Content/bin/DesktopGL/Content/ball.xnb","TextureProcessor","Texture2DContent",8368,16469,0.1779026
 "D:/GitHub/Battleplan/BattleplanOpenGL/Content/tCharacterRing.png","D:/GitHub/Battleplan/BattleplanOpenGL/Content/bin/DesktopGL/Content/tCharacterRing.xnb","TextureProcessor","Texture2DContent",54961,8277,0.0430858
 "D:/GitHub/Battleplan/BattleplanOpenGL/Content/tDebug.png","D:/GitHub/Battleplan/BattleplanOpenGL/Content/bin/DesktopGL/Content/tDebug.xnb","TextureProcessor","Texture2DContent",49305,40085,0.0253563
 "D:/GitHub/Battleplan/BattleplanOpenGL/Content/tDebugBG.png","D:/GitHub/Battleplan/BattleplanOpenGL/Content/bin/DesktopGL/Content/tDebugBG.xnb","TextureProcessor","Texture2DContent",87867,4000085,0.15205

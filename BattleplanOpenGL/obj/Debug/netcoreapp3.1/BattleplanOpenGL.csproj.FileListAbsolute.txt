@@ -30,7 +30,6 @@ D:\GitHub\LearningMonogame\LearningMonogameOpenGL\obj\Debug\netcoreapp3.1\Battle
 D:\GitHub\LearningMonogame\LearningMonogameOpenGL\obj\Debug\netcoreapp3.1\BattleplanOpenGL.dll
 D:\GitHub\LearningMonogame\LearningMonogameOpenGL\obj\Debug\netcoreapp3.1\BattleplanOpenGL.pdb
 D:\GitHub\LearningMonogame\LearningMonogameOpenGL\obj\Debug\netcoreapp3.1\BattleplanOpenGL.genruntimeconfig.cache
-D:\GitHub\Battleplan\BattleplanOpenGL\bin\Debug\netcoreapp3.1\Content\ball.xnb
 D:\GitHub\Battleplan\BattleplanOpenGL\bin\Debug\netcoreapp3.1\Content\tCharacterRing.xnb
 D:\GitHub\Battleplan\BattleplanOpenGL\bin\Debug\netcoreapp3.1\Content\tDebug.xnb
 D:\GitHub\Battleplan\BattleplanOpenGL\bin\Debug\netcoreapp3.1\Content\tDebugBG.xnb
