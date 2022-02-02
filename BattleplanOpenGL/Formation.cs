@@ -4,7 +4,7 @@ namespace Battleplan
 {
 	public class Formation
 	{
-		public Formation(int width, int depth)
+		public Formation(int width, int depth, Vector2 position)
 		{
 			Width            = width;
 			Depth            = depth;
@@ -15,13 +15,13 @@ namespace Battleplan
 			{
 				for (var rank = 0; rank < FormationMarkers.GetLength(1); rank++)
 				{
-					FormationMarkers[file, rank] = new GameObject(new Sprite("tCharacterRing"), Vector2.Zero, 0);
+					FormationMarkers[file, rank] = new GameObject(new Sprite("tCharacterRing"), position, 0);
 				}
 			}
 		}
 
-		int           Width            { get; }
-		int           Depth            { get; }
+		public int    Width            { get; }
+		public int    Depth            { get; }
 		GameObject[,] FormationMarkers { get; }
 		Actor[,]      Units            { get; }
 
@@ -31,6 +31,22 @@ namespace Battleplan
 		// 	2. if there's still no frontcenter, add edges to either side to center a unit
 		public Vector2 FrontCenterUnitPosition   => Units[Width            / 2, 0].Position;
 		public Vector2 FrontCenterMarkerPosition => FormationMarkers[Width / 2, 0].Position;
+
+		/// <summary>
+		///     Sets markers and units to their correct positions. Using this avoids all units being stacked up after spawning
+		///     in.
+		/// </summary>
+		public void Initialize()
+		{
+			MoveFormation(FrontCenterMarkerPosition);
+			foreach (var unit in Units)
+			{
+				if (unit != null)
+				{
+					unit.Position = unit.FormationMarker.Position;
+				}
+			}
+		}
 
 		public void AddUnit(Actor newUnit, int file, int rank)
 		{

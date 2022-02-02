@@ -23,7 +23,7 @@ namespace Battleplan
 		GameObject                   Cursor         { get; set; }
 		bool                         MouseDown      { get; set; }
 		Formation                    Party          { get; set; }
-		Line                         PartyLine      { get; set; }
+		Line                         PartyPath      { get; set; }
 		Vector2                      CameraPosition { get; set; }
 
 		void UpdateScreenSize()
@@ -38,44 +38,31 @@ namespace Battleplan
 		{
 			UpdateScreenSize();
 
-			var screenCenter = new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) / 2f;
-			screenCenter = screenCenter.ScreenToWorld();
-
 			// create Cursor
-			Cursor = new GameObject(new Sprite("tCharacterRing"), screenCenter, GameData.Config.CursorSpeed);
+			Cursor = new GameObject(new Sprite("tCharacterRing"), Vector2.Zero, GameData.Config.CursorSpeed);
 
 			// create debug characters
-			var A1 = new Actor(
-				new Sprite("tDebugCharacter", Sprite.OriginType.Bottom),
-				screenCenter,
-				300,
-				0.5f,
-				new[] {new Behavior(Behavior.DoType.Approach, Behavior.ToType.FormationMarker)},
-				"Test Guy"
-			);
-			var A2 = new Actor(
-				new Sprite("tDebugCharacter", Sprite.OriginType.Bottom),
-				screenCenter,
-				300,
-				0.5f,
-				new[] {new Behavior(Behavior.DoType.Approach, Behavior.ToType.FormationMarker)},
-				"Test Guy"
-			);
-			var A3 = new Actor(
-				new Sprite("tDebugCharacter", Sprite.OriginType.Bottom),
-				screenCenter,
-				300,
-				0.5f,
-				new[] {new Behavior(Behavior.DoType.Approach, Behavior.ToType.FormationMarker)},
-				"Test Guy"
-			);
+			Party = new Formation(3, 3, Vector2.Zero);
+			var debugCharacters = new Actor[3];
+			for (var i = 0; i < 3; i++)
+			{
+				debugCharacters[i] = new Actor(
+					new Sprite("tDebugCharacter", Sprite.OriginType.Bottom),
+					Vector2.Zero,
+					300,
+					0.5f,
+					new[] {new Behavior(Behavior.DoType.Approach, Behavior.ToType.FormationMarker)},
+					"Test Guy"
+				);
+			}
 
-			Party = new Formation(3, 3);
-			Party.AddUnit(A1, 1, 0);
-			Party.AddUnit(A2, 0, 2);
-			Party.AddUnit(A3, 2, 2);
+			Party.AddUnit(debugCharacters[0], 1, 0);
+			Party.AddUnit(debugCharacters[1], 0, 2);
+			Party.AddUnit(debugCharacters[2], 2, 2);
+			Party.Initialize();
 
-			PartyLine = new Line(new Sprite("tLineSegment"), Vector2.Zero, Vector2.Zero);
+			// create party path line
+			PartyPath = new Line(new Sprite("tLineSegment"), Vector2.Zero, Vector2.Zero);
 
 			base.Initialize();
 		}
@@ -88,6 +75,9 @@ namespace Battleplan
 			CameraPosition =  (Party.FrontCenterUnitPosition + Cursor.Position) / 2;
 			CameraPosition =  CameraPosition.WorldToScreen();
 			CameraPosition -= new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) / 2f;
+
+			// move line
+			PartyPath.RebuildLine(Party.FrontCenterMarkerPosition, Party.FrontCenterUnitPosition);
 
 			// set cursor destination to click location & move formation
 			if ((Mouse.GetState().LeftButton == ButtonState.Pressed) && !MouseDown)
@@ -102,9 +92,6 @@ namespace Battleplan
 				// move Cursor
 				Cursor.Destination = clickPosition;
 				Cursor.IsMoving    = true;
-
-				// move line
-				PartyLine.RebuildLine(Party.FrontCenterUnitPosition, clickPosition);
 			}
 			else if (MouseDown && (Mouse.GetState().LeftButton == ButtonState.Released))
 			{
