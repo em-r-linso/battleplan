@@ -20,11 +20,18 @@ namespace LearningMonogameOpenGL
 			Name          = name;
 		}
 
-		float             IdleClock     { get; set; }
-		float             IdleInterval  { get; }
-		Behavior[]        IdleBehaviors { get; }
-		string            Name          { get; }
-		public GameObject Target        { get; set; }
+		float             IdleClock       { get; set; }
+		float             IdleInterval    { get; }
+		Behavior[]        IdleBehaviors   { get; }
+		string            Name            { get; }
+		public GameObject Target          { get; set; }
+		public GameObject FormationMarker { get; set; }
+
+		public override void Update(float time)
+		{
+			Move(time);
+			Idle(time);
+		}
 
 		public void Idle(float time)
 		{
@@ -56,6 +63,9 @@ namespace LearningMonogameOpenGL
 				case Behavior.ToType.AnyEnemy:
 					throw new NotImplementedException();
 					break;
+				case Behavior.ToType.FormationMarker:
+					to = FormationMarker;
+					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
@@ -63,7 +73,7 @@ namespace LearningMonogameOpenGL
 			switch (behavior.Do)
 			{
 				case Behavior.DoType.Approach:
-					Destination = Target.Position;
+					Destination = to.Position;
 					IsMoving    = true;
 					break;
 				case Behavior.DoType.Attack:

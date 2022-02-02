@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace LearningMonogameOpenGL
@@ -13,7 +14,17 @@ namespace LearningMonogameOpenGL
 
 			// initialize position and target to same point
 			Position = Destination = position;
+
+			// register
+			if (Registry == null)
+			{
+				Registry = new List<GameObject>();
+			}
+
+			Registry.Add(this);
 		}
+
+		public static List<GameObject> Registry { get; set; }
 
 		/// <summary>Current screen position of the object.</summary>
 		public Vector2 Position { get; set; }
@@ -28,6 +39,8 @@ namespace LearningMonogameOpenGL
 		public Sprite Sprite { get; set; }
 
 		public bool IsMoving { get; set; }
+
+		public virtual void Update(float time) { Move(time); }
 
 		public void Move(float time)
 		{
@@ -51,7 +64,7 @@ namespace LearningMonogameOpenGL
 
 				var perspectiveAdjustedMoveSpeed = MoveSpeed * (1f - (0.5f * Math.Abs(difference.Y)));
 
-				Position   += difference * perspectiveAdjustedMoveSpeed * time;
+				Position += difference * perspectiveAdjustedMoveSpeed * time;
 			}
 		}
 	}

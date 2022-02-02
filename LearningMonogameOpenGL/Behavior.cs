@@ -23,6 +23,7 @@
 
 		public enum ToType
 		{
+			FormationMarker,
 			Focus,
 			MyTarget,
 			AnyAlly,
