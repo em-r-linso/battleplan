@@ -16,8 +16,9 @@ namespace LearningMonogameOpenGL
 
 		internal struct ConfigStruct
 		{
-			public float CursorSpeed      { get; set; }
-			public float FormationSpacing { get; set; }
+			public float CursorSpeed        { get; set; }
+			public float FormationSpacing   { get; set; }
+			public float LineSegmentSpacing { get; set; }
 		}
 	}
 }

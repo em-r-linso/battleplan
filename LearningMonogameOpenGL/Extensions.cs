@@ -5,14 +5,10 @@ namespace LearningMonogameOpenGL
 {
 	public static class Vector2Extensions
 	{
-		public static Matrix RotationTo(this Vector2 from, Vector2 to, bool scaleFor45Deg = true)
+		public static Matrix RotationTo(this Vector2 from, Vector2 to)
 		{
 			// difference between vectors
 			var (x1, y1) = to - from;
-			if (scaleFor45Deg)
-			{
-				y1 *= 2;
-			}
 
 			// reference vector (straight up)
 			var (x2, y2) = Vector2.UnitY;
@@ -24,5 +20,9 @@ namespace LearningMonogameOpenGL
 
 			return Matrix.CreateRotationZ(angle);
 		}
+
+		public static Vector2 WorldToScreen(this Vector2 vector) => vector * new Vector2(1, 0.5f);
+
+		public static Vector2 ScreenToWorld(this Vector2 vector) => vector * new Vector2(1, 2);
 	}
 }

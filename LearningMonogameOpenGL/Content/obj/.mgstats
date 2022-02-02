@@ -1,6 +1,7 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/ball.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/ball.xnb","TextureProcessor","Texture2DContent",8368,16469,0.1298919
-"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tCharacterRing.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tCharacterRing.xnb","TextureProcessor","Texture2DContent",54961,8277,0.0019628
-"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebug.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tDebug.xnb","TextureProcessor","Texture2DContent",49305,40085,0.0037465
-"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebugBG.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tDebugBG.xnb","TextureProcessor","Texture2DContent",87494,4000085,0.1270828
-"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebugCharacter.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tDebugCharacter.xnb","TextureProcessor","Texture2DContent",49631,16469,0.0025626
+"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/ball.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/ball.xnb","TextureProcessor","Texture2DContent",8368,16469,0.2922582
+"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tCharacterRing.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tCharacterRing.xnb","TextureProcessor","Texture2DContent",54961,8277,0.0138197
+"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebug.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tDebug.xnb","TextureProcessor","Texture2DContent",49305,40085,0.0043874
+"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebugBG.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tDebugBG.xnb","TextureProcessor","Texture2DContent",87867,4000085,0.12019
+"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebugCharacter.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tDebugCharacter.xnb","TextureProcessor","Texture2DContent",49631,16469,0.0025858
+"D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tLineSegment.png","D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tLineSegment.xnb","TextureProcessor","Texture2DContent",51633,597,0.0033598

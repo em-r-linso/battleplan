@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/tDebugBG.png</SourceFile>
-  <SourceTime>2022-01-28T17:45:14.7467569-07:00</SourceTime>
+  <SourceTime>2022-01-28T18:13:42.1863522-07:00</SourceTime>
   <DestFile>D:/GitHub/LearningMonogame/LearningMonogameOpenGL/Content/bin/tDebugBG.xnb</DestFile>
-  <DestTime>2022-01-28T17:46:47.719841-07:00</DestTime>
+  <DestTime>2022-02-01T22:05:01.9860773-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T10:17:54-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

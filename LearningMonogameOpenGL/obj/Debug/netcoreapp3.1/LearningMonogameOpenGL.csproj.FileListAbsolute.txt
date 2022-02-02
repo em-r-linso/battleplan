@@ -56,3 +56,4 @@ D:\GitHub\LearningMonogame\LearningMonogameOpenGL\obj\Debug\netcoreapp3.1\Learni
 D:\GitHub\LearningMonogame\LearningMonogameOpenGL\bin\Debug\netcoreapp3.1\Content\tCharacterRing.xnb
 D:\GitHub\LearningMonogame\LearningMonogameOpenGL\bin\Debug\netcoreapp3.1\Content\tDebugCharacter.xnb
 D:\GitHub\LearningMonogame\LearningMonogameOpenGL\bin\Debug\netcoreapp3.1\Content\tDebugBG.xnb
+D:\GitHub\LearningMonogame\LearningMonogameOpenGL\bin\Debug\netcoreapp3.1\Content\tLineSegment.xnb

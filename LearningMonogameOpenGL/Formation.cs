@@ -20,11 +20,12 @@ namespace LearningMonogameOpenGL
 			}
 		}
 
-		int                  Width               { get; }
-		int                  Depth               { get; }
-		public GameObject[,] FormationMarkers    { get; set; }
-		Actor[,]             Units               { get; }
-		public Vector2       FrontCenterPosition { get; set; }
+		int                  Width                     { get; }
+		int                  Depth                     { get; }
+		public GameObject[,] FormationMarkers          { get; set; }
+		Actor[,]             Units                     { get; }
+		public Vector2       FrontCenterUnitPosition   { get; set; }
+		public Vector2       FrontCenterMarkerPosition { get; set; }
 
 		public void AddUnit(Actor newUnit, int file, int rank)
 		{
@@ -34,15 +35,15 @@ namespace LearningMonogameOpenGL
 
 		public void MoveFormation(Vector2 destination)
 		{
-
 			// BUG: this will crash if there's no unit in the front center
 			// 	formations with no front unit should probably automatically adjust:
 			// 	1. trim edges
 			// 	2. if there's still no frontcenter, add edges to either side to center a unit
-			FrontCenterPosition = Units[Width / 2, 0].Position;
+			FrontCenterUnitPosition   = Units[Width            / 2, 0].Position;
+			FrontCenterMarkerPosition = FormationMarkers[Width / 2, 0].Position;
 
 			// find the angle to rotate the formation
-			var angle = FrontCenterPosition.RotationTo(destination);
+			var angle = FrontCenterUnitPosition.RotationTo(destination);
 
 			// assign a position for each formation spot
 			for (var file = 0; file < FormationMarkers.GetLength(0); file++)
@@ -59,9 +60,6 @@ namespace LearningMonogameOpenGL
 					// TODO: Total War style facing
 					offset = Vector2.Transform(offset, angle);
 					offset = new Vector2(offset.X, -offset.Y); // I do not know why, but Y must be inverted
-
-					// correct for 45deg view
-					offset *= new Vector2(1, 0.5f);
 
 					// place formation spot
 					FormationMarkers[file, rank].Position = destination + offset;

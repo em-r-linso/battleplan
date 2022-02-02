@@ -16,11 +16,7 @@ namespace LearningMonogameOpenGL
 			Position = Destination = position;
 
 			// register
-			if (Registry == null)
-			{
-				Registry = new List<GameObject>();
-			}
-
+			Registry ??= new List<GameObject>();
 			Registry.Add(this);
 		}
 
@@ -62,9 +58,7 @@ namespace LearningMonogameOpenGL
 				var difference = Destination - Position;
 				difference.Normalize();
 
-				var perspectiveAdjustedMoveSpeed = MoveSpeed * (1f - (0.5f * Math.Abs(difference.Y)));
-
-				Position += difference * perspectiveAdjustedMoveSpeed * time;
+				Position += difference * MoveSpeed * time;
 			}
 		}
 	}

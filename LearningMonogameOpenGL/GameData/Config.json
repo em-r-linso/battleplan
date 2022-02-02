@@ -1,4 +1,5 @@
 ﻿{
   "CursorSpeed": 1000,
-  "FormationSpacing": 70
+  "FormationSpacing": 70,
+  "LineSegmentSpacing": 30
 }
